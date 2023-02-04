@@ -3,7 +3,9 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import MovieCard from "../MovieCard";
-export default function MoviesToWatch({ Movies, handleToggle }) {
+import { useSelector } from "react-redux";
+export default function MoviesToWatch() {
+  const Movies = useSelector((state) => state.movies);
   return (
     <>
       <h1>Your list</h1>
@@ -17,11 +19,7 @@ export default function MoviesToWatch({ Movies, handleToggle }) {
           (movie) =>
             !movie.watched && (
               <SwiperSlide>
-                <MovieCard
-                  handleToggle={handleToggle}
-                  {...movie}
-                  type="mylist"
-                />
+                <MovieCard {...movie} type="mylist" />
               </SwiperSlide>
             )
         )}
